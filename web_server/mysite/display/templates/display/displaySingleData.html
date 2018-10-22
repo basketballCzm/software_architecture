@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<body>
+<table id="table" border="1" cellspacing="0" cellpadding="0">
+   <tr>
+        <th>ID</th>
+        <th>IP</th>
+        <th>MAC</th>
+        <th>CPU</th>
+        <th>cpu逻辑核数</th><th>cpu使用率</th><th>内核态系统时间</th><th>用户态时间</th><th>空闲时间</th><th>nice时间 (花费在调整进程优先级上的时间)</th><th>软件中断时间</th><th>中断时间</th><th>中断时间</th>
+        <th>MEM</th>
+        <th>占用内存百分比</th><th>总内存</th><th>可用内存</th><th>已经使用内存</th><th>空闲内存</th><th>活跃内存</th>
+        <th>STATUS</th>
+        <th>CPU使用率</th><th>内存使用率</th><th>进程数</th><th>连接数</th>
+    </tr>
+</table>
+<script type="text/javascript">
+window.onload=function(){
+
+var data = {{ displaySingleData|safe }};
+
+    
+    var table=document.getElementById("table");
+    for(var i=0;i<data.length;i++){
+                            var row=table.insertRow(table.rows.length);
+                            var c1=row.insertCell(0);
+                            c1.innerHTML = data[i].ID;
+                            var c2=row.insertCell(1);
+                            c2.innerHTML=data[i].IP;
+                            var c3=row.insertCell(2);
+                            c3.innerHTML=data[i].MAC;
+                            var c4=row.insertCell(3);
+                            c4.innerHTML=data[i].CPU;
+
+                             var c5=row.insertCell(4);
+                             c5.innerHTML=data[i].CPU.cores;
+                             var c6=row.insertCell(5);
+                             c6.innerHTML=data[i].CPU.percent;
+                             var c7=row.insertCell(6);
+                             c7.innerHTML=data[i].CPU.system_time;
+                             var c8=row.insertCell(7);
+                             c8.innerHTML=data[i].CPU.user_time;
+                             var c9=row.insertCell(8);
+                             c9.innerHTML=data[i].CPU.idle_time;
+                             var c10=row.insertCell(9);
+                             c10.innerHTML=data[i].CPU.nice_time;
+                             var c11=row.insertCell(10);
+                             c11.innerHTML=data[i].CPU.softirq;
+                             var c12=row.insertCell(11);
+                             c12.innerHTML=data[i].CPU.irq;
+                             var c13=row.insertCell(12);
+                             c13.innerHTML=data[i].CPU.iowait;
+                            
+
+                            var c14=row.insertCell(13);
+                            c14.innerHTML=data[i].MEM;
+
+                            
+                            var c15=row.insertCell(14);
+                            c15.innerHTML=data[i].MEM.percent;
+                            var c16=row.insertCell(15);
+                            c16.innerHTML=data[i].MEM.total;
+                            var c17=row.insertCell(16);
+                            c17.innerHTML=data[i].MEM.vailable;
+                            var c18=row.insertCell(17);
+                            c18.innerHTML=data[i].MEM.used;
+                            var c19=row.insertCell(18);
+                            c19.innerHTML=data[i].MEM.free;
+                            var c20=row.insertCell(19);
+                            c20.innerHTML=data[i].MEM.active;
+                           
+                            var c21=row.insertCell(20);
+                            c21.innerHTML=data[i].STATUS;
+
+                            var c22=row.insertCell(21);
+                            c22.innerHTML=data[i].STATUS[0];
+                            var c23=row.insertCell(22);
+                            c23.innerHTML=data[i].STATUS[1];
+                            var c24=row.insertCell(23);
+                            c24.innerHTML=data[i].STATUS[2];
+                            var c25=row.insertCell(24);
+                            c25.innerHTML=data[i].STATUS[3];
+
+
+                        }
+}
+</script>
+</body>
+</html>
