@@ -18,7 +18,7 @@ def on_close(ws):
 
 def on_open(ws):
     id = random.randint(1000000,9999999);
-    for x in range(1,10):
+    for x in range(1,200):
         time.sleep(1)
         MS = MachineStatus()
         #print (MS.IP, '\n', MS.MAC, '\n', MS.cpu, '\n', MS.mem, '\n', MS.status)
@@ -46,11 +46,19 @@ def on_start(a):
 
     ws.run_forever()
 
+'''
+测试脚本说明:
+该脚本通过调整线程池中的并发量来模拟多个用户的并发连接。
+在下面的例子中创建5个线程，在20秒内创建5个线程，每个线程每隔一秒自动发送一个请求，持续10秒。
+'''
+
 if __name__ == "__main__":
-    pool = ThreadPool(5)
+    pool = ThreadPool(100)
     test = list()
-    for ir in range(5):
+    for ir in range(100):
         test.append(ir)
+    # 需要线程池处理的任务
     requests = makeRequests(on_start, test)
+    # 将任务放到线程池中
     [pool.putRequest(req) for req in requests]
     pool.wait()
